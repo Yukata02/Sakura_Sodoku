@@ -1,34 +1,34 @@
-// NovaSudoku Interactive Guided Tour Steps
+// NovaSudoku Interactive Guided Tour Steps - Cozy & Welcoming Edition
 
 export const TOUR_STEPS = [
     {
-        title: "Welcome to NovaSudoku",
-        text: "Let's take a quick 30-second walkthrough of the board and controls.",
+        title: "Welcome to Your Cozy Corner",
+        text: "Take a deep breath. Here is a gentle 30-second walkthrough to help you feel right at home.",
         target: "game-heading",
     },
     {
-        title: "Difficulty & New Game",
-        text: "Select your preferred difficulty (Easy, Medium, Hard, Expert) and tap 'New Game' to generate an instant unique puzzle.",
+        title: "Puzzles at Your Pace",
+        text: "Choose how you want to play today—from a relaxing warm-up to a deep puzzle—and tap 'New puzzle' whenever you're ready.",
         target: "game-toolbar",
     },
     {
-        title: "The 9x9 Sudoku Grid",
-        text: "Tap or click any empty square. The row, column, and 3x3 block highlight automatically to guide your focus.",
+        title: "Your Peaceful 9x9 Canvas",
+        text: "Click or tap any square. Its row, column, and 3×3 box will gently illuminate so your eyes can focus without strain.",
         target: "board",
     },
     {
-        title: "Number Pad",
-        text: "Use these number buttons or your physical keyboard (keys 1-9) to place a number into the selected square.",
+        title: "Comfortable Number Keys",
+        text: "Tap these buttons or press 1-9 on your keyboard to place numbers accompanied by soft, acoustic bell chimes.",
         target: "number-pad",
     },
     {
-        title: "Pencil Notes Mode",
-        text: "Toggle Notes mode on or hold Shift to pencil in possible candidates. As you solve, candidates help narrow down deductions.",
+        title: "Gentle Pencil Notes",
+        text: "Pondering a couple possibilities? Tap 'Notes' to jot down friendly annotations so you can keep your mind light and clear.",
         target: "notes-btn",
     },
     {
-        title: "Smart Hints & Checks",
-        text: "Stuck? Tap 'Hint' for intelligent deductive step explanations, or 'Check' to verify your current board for conflicts.",
+        title: "Helpful Nudges Anytime",
+        text: "There is never any pressure. Tap 'Hint' for a kind, logical explanation whenever you'd like a gentle nudge in the right direction.",
         target: "game-actions",
     },
 ];

@@ -1,6 +1,6 @@
 /* ==========================================================
-   NovaSudoku Studio - Ultra-Premium Modern Redesign
-   Fixed Layout, Pixel-Perfect Centering & Mobile Touch Sizing
+   SakuraSudoku — Cute & Pink Pastel Strawberry Milk Edition
+   Soft squircle cards, candy buttons, and cheerful blooms 🌸🍓
    ========================================================== */
 
 *, *::before, *::after {
@@ -15,32 +15,34 @@
     display: flex;
     flex-direction: column;
     background-color: var(--background-color);
+    background-image:
+        radial-gradient(1200px 650px at 10% -5%, var(--background-glow-1) 0%, transparent 60%),
+        radial-gradient(1000px 550px at 95% 5%, var(--background-glow-2) 0%, transparent 55%);
+    background-attachment: fixed;
     color: var(--text-color);
     font-family: var(--app-font-family);
-    transition: background-color 250ms ease, color 250ms ease;
+    transition: background-color 220ms ease, color 220ms ease;
 }
 
 /* ==========================================================
-   Header (Sticky with backdrop blur)
+   Site Header
    ========================================================== */
 .site-header {
+    width: 100%;
+    background: var(--status-bar-bg);
+    border-bottom: 2px dashed var(--border-pink);
+    backdrop-filter: blur(16px);
+    -webkit-backdrop-filter: blur(16px);
     position: sticky;
     top: 0;
-    width: 100%;
-    height: 60px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background: var(--status-bar-bg);
-    border-bottom: 1px solid var(--status-bar-border-color);
-    backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     z-index: 50;
+    padding: 0.75rem 0;
 }
 
 .site-header-inner {
     width: 100%;
     max-width: 1040px;
+    margin: 0 auto;
     padding: 0 1rem;
     display: flex;
     align-items: center;
@@ -50,73 +52,89 @@
 .brand {
     display: flex;
     align-items: center;
-    gap: 0.55rem;
+    gap: 0.5rem;
     text-decoration: none;
-    color: var(--text-color);
-    font-size: 1.15rem;
-    font-weight: 700;
+    color: var(--ink-dark);
 }
 
 .brand-gem {
-    display: flex;
-    align-items: center;
-    filter: drop-shadow(0 3px 8px rgba(99, 102, 241, 0.4));
+    font-size: 1.4rem;
+    line-height: 1;
+    filter: drop-shadow(0 2px 6px rgba(244, 63, 94, 0.3));
+}
+
+.brand-text {
+    font-family: var(--hand-font-family);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    letter-spacing: -0.01em;
+}
+
+.brand-text strong {
+    color: var(--ink-pink);
 }
 
 .brand-chip {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 700;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    padding: 0.15rem 0.45rem;
+    padding: 0.2rem 0.65rem;
     border-radius: 9999px;
-    background: rgba(99, 102, 241, 0.15);
-    color: var(--accent-color);
+    background: #ffe4e6;
+    color: var(--ink-pink);
+    border: 1px solid #fecdd3;
 }
 
 .site-nav {
     display: flex;
     align-items: center;
-    gap: 1rem;
+    gap: 1.25rem;
 }
 
 .site-nav a {
-    color: var(--text-color);
+    color: var(--ink-dark);
     text-decoration: none;
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 600;
-    opacity: 0.75;
-    transition: all 160ms ease;
+    padding: 0.25rem 0.5rem;
+    border-radius: 9999px;
+    transition: all 140ms ease;
 }
 
 .site-nav a:hover {
-    opacity: 1;
-    color: var(--accent-color);
+    color: var(--ink-pink);
+    background: #ffe4e6;
 }
 
 .header-controls {
     display: flex;
     align-items: center;
-    gap: 0.4rem;
+    gap: 0.45rem;
 }
 
 .icon-ctrl-btn {
-    width: 36px;
-    height: 36px;
+    width: 38px;
+    height: 38px;
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    border-radius: var(--radius-md);
+    background: #ffffff;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 9999px;
+    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.1);
     cursor: pointer;
-    font-size: 1.05rem;
-    transition: all 160ms ease;
+    font-size: 1.1rem;
+    transition: all 140ms ease;
 }
 
 .icon-ctrl-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.2);
+    transform: translateY(-2px) scale(1.05);
+    border-color: var(--accent-color);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.25);
+}
+
+.icon-ctrl-btn:active {
+    transform: translateY(0) scale(0.96);
 }
 
 /* ==========================================================
@@ -127,10 +145,10 @@
     max-width: 1040px;
     width: 100%;
     margin: 0 auto;
-    padding: 1.25rem 1rem 3.5rem 1rem;
+    padding: 1.5rem 1rem 3.5rem 1rem;
     display: flex;
     flex-direction: column;
-    gap: 1.75rem;
+    gap: 2rem;
     box-sizing: border-box;
 }
 
@@ -145,98 +163,105 @@
 }
 
 .eyebrow {
-    font-size: 0.75rem;
+    font-size: 0.85rem;
     font-weight: 700;
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    color: var(--accent-color);
+    letter-spacing: 0.08em;
+    color: var(--ink-pink);
     margin: 0 0 0.35rem 0;
 }
 
 .hero-title {
-    font-size: clamp(1.4rem, 3vw, 2.2rem);
-    font-weight: 800;
+    font-family: var(--hand-font-family);
+    font-size: clamp(2.1rem, 4.5vw, 3.2rem);
+    font-weight: 700;
+    color: var(--ink-dark);
     line-height: 1.2;
-    letter-spacing: -0.025em;
-    margin: 0 0 0.4rem 0;
+    letter-spacing: -0.01em;
+    margin: 0 0 0.45rem 0;
 }
 
-.hero-title em {
-    font-style: normal;
-    background: linear-gradient(135deg, #6366f1 0%, #38bdf8 100%);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+.highlight-text {
+    color: var(--ink-pink);
 }
 
 .hero-copy {
-    font-size: clamp(0.85rem, 1.8vw, 0.95rem);
-    opacity: 0.75;
-    max-width: 540px;
-    line-height: 1.5;
+    font-size: clamp(0.92rem, 1.8vw, 1.02rem);
+    color: var(--ink-soft);
+    max-width: 520px;
+    line-height: 1.55;
     margin: 0;
 }
 
-.hero-badge {
+/* Cute Circular Stamp Badge */
+.hero-stamp-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 0.35rem;
+}
+
+.hero-stamp-badge {
+    width: 95px;
+    height: 95px;
+    border: 2px dashed var(--border-pink-bold);
+    border-radius: 50%;
+    background: #ffffff;
+    box-shadow: 0 6px 16px rgba(244, 63, 94, 0.12);
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-md);
-    box-shadow: var(--shadow-card);
-    padding: 0.85rem 1.4rem;
     text-align: center;
-    min-width: 110px;
+    transform: rotate(4deg);
+    padding: 0.35rem;
 }
 
-.badge-spark {
-    color: var(--accent-color);
-    font-size: 1.1rem;
+.stamp-grid {
+    font-family: var(--hand-font-family);
+    font-size: 1.65rem;
+    font-weight: 700;
+    color: var(--ink-pink);
+    line-height: 1;
 }
 
-.badge-grid {
-    font-family: var(--mono-font-family);
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: 0.05em;
-    margin: 0.15rem 0;
+.stamp-sub {
+    font-family: var(--hand-font-family);
+    font-size: 0.75rem;
+    color: var(--ink-soft);
+    line-height: 1.1;
+    margin-top: 0.15rem;
 }
 
-.badge-sub {
-    font-size: 0.72rem;
-    font-weight: 600;
-    text-transform: uppercase;
-    letter-spacing: 0.08em;
-    opacity: 0.65;
+.stamp-star {
+    font-size: 1.4rem;
+    transform: translateY(-16px);
 }
 
 /* ==========================================================
-   Game Layout (Desktop 2-column, Mobile 1-column centered)
+   Game Layout
    ========================================================== */
 .game-layout {
     display: grid;
-    grid-template-columns: minmax(0, 1fr) 300px;
-    gap: 1.5rem;
+    grid-template-columns: minmax(0, 1fr) 320px;
+    gap: 1.75rem;
     align-items: start;
     width: 100%;
     box-sizing: border-box;
 }
 
 /* ==========================================================
-   Game Card
+   Primary Game Card
    ========================================================== */
 .game-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: clamp(0.85rem, 2.5vw, 1.4rem);
+    background: #ffffff;
+    border: 2px solid var(--border-pink);
+    border-radius: 24px;
+    box-shadow: var(--shadow-cute);
+    padding: clamp(0.85rem, 2.5vw, 1.5rem);
     display: flex;
     flex-direction: column;
-    gap: 0.9rem;
+    gap: 0.95rem;
     width: 100%;
-    max-width: 490px;
+    max-width: 500px;
     margin: 0 auto;
     box-sizing: border-box;
 }
@@ -250,18 +275,20 @@
 }
 
 .card-eyebrow {
-    font-size: 0.7rem;
+    font-size: 0.75rem;
     font-weight: 800;
-    letter-spacing: 0.1em;
-    color: var(--accent-color);
+    letter-spacing: 0.08em;
+    color: var(--ink-pink);
     margin: 0 0 0.15rem 0;
 }
 
 .card-title {
-    font-size: 1.35rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: var(--hand-font-family);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--ink-dark);
     margin: 0;
+    line-height: 1;
 }
 
 .heading-actions {
@@ -271,42 +298,41 @@
 }
 
 .tour-btn {
-    background: transparent;
-    border: 1px solid var(--btn-secondary-border);
+    background: #fff0f3;
+    border: 1.5px solid var(--border-pink);
     border-radius: 9999px;
-    padding: 0.35rem 0.75rem;
-    font-size: 0.82rem;
-    font-weight: 600;
-    color: var(--text-color);
+    padding: 0.35rem 0.85rem;
+    font-family: var(--hand-font-family);
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: var(--ink-pink);
     cursor: pointer;
-    transition: all 160ms ease;
+    transition: all 140ms ease;
 }
 
 .tour-btn:hover {
-    background: var(--link-hover-bg-color);
+    background: var(--accent-color);
+    color: #ffffff;
     border-color: var(--accent-color);
-    color: var(--accent-color);
+    transform: translateY(-1px);
 }
 
 .timer-badge {
     display: inline-flex;
     align-items: center;
-    gap: 0.4rem;
-    padding: 0.35rem 0.75rem;
-    background: var(--timer-pill-bg);
-    border: 1px solid var(--timer-pill-border);
+    gap: 0.35rem;
+    padding: 0.3rem 0.75rem;
+    background: #fff0f3;
+    border: 1.5px solid var(--border-pink);
     border-radius: 9999px;
     font-family: var(--mono-font-family);
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 700;
+    color: var(--ink-pink);
 }
 
-.timer-dot {
-    width: 7px;
-    height: 7px;
-    border-radius: 50%;
-    background-color: #10b981;
-    box-shadow: 0 0 8px #10b981;
+.timer-icon {
+    font-size: 0.9rem;
 }
 
 /* Toolbar */
@@ -316,8 +342,8 @@
     justify-content: space-between;
     gap: 0.5rem;
     flex-wrap: wrap;
-    padding-bottom: 0.45rem;
-    border-bottom: 1px solid var(--status-bar-border-color);
+    padding-bottom: 0.5rem;
+    border-bottom: 1.5px dashed var(--border-pink);
     width: 100%;
     box-sizing: border-box;
 }
@@ -329,48 +355,54 @@
 }
 
 .difficulty-picker label {
-    font-size: 0.82rem;
-    font-weight: 600;
-    opacity: 0.75;
+    font-family: var(--hand-font-family);
+    font-size: 1.15rem;
+    font-weight: 700;
+    color: var(--ink-dark);
 }
 
 .difficulty-picker select {
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    border-radius: var(--radius-sm);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: 0.85rem;
-    font-weight: 600;
-    padding: 0.35rem 0.6rem;
-    max-width: 160px;
+    background: #fff0f3;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 12px;
+    color: var(--ink-dark);
+    font-family: var(--hand-font-family);
+    font-size: 1.1rem;
+    font-weight: 700;
+    padding: 0.35rem 0.75rem;
+    max-width: 155px;
     cursor: pointer;
     outline: none;
-    transition: border-color 150ms ease;
+    transition: all 120ms ease;
 }
 
 .difficulty-picker select:focus {
     border-color: var(--accent-color);
+    box-shadow: 0 0 0 2px rgba(244, 63, 94, 0.2);
 }
 
 .new-game-btn {
-    background: linear-gradient(135deg, var(--accent-color) 0%, #38bdf8 100%);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
     color: #ffffff;
     border: none;
-    border-radius: var(--radius-sm);
-    font-family: inherit;
-    font-size: 0.86rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.35);
+    font-family: var(--hand-font-family);
+    font-size: 1.15rem;
     font-weight: 700;
-    padding: 0.45rem 1rem;
+    padding: 0.4rem 1.15rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-    transition: all 160ms ease;
+    transition: all 140ms ease;
     white-space: nowrap;
 }
 
 .new-game-btn:hover {
-    transform: translateY(-1px);
-    box-shadow: 0 6px 16px rgba(99, 102, 241, 0.45);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.45);
+}
+
+.new-game-btn:active {
+    transform: translateY(0);
 }
 
 /* ==========================================================
@@ -383,11 +415,11 @@
     width: 100%;
     max-width: 440px;
     margin: 0 auto;
-    background: var(--grid-surface-color);
+    background: #ffffff;
     border: 2.5px solid var(--grid-line-color-bold);
-    border-radius: 12px;
+    border-radius: 16px;
     overflow: hidden;
-    box-shadow: var(--shadow-card);
+    box-shadow: 0 8px 24px rgba(244, 63, 94, 0.12);
     touch-action: manipulation;
     box-sizing: border-box;
 }
@@ -400,22 +432,22 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--grid-surface-color);
+    background: #ffffff;
     border: 0.5px solid var(--grid-line-color);
     cursor: pointer;
     padding: 0;
     font-family: var(--app-font-family);
-    transition: background-color 100ms ease, box-shadow 100ms ease;
+    transition: background-color 100ms ease;
     outline: none;
     box-sizing: border-box;
 }
 
 .cell.box-right {
-    border-right: 2.5px solid var(--grid-line-color-bold);
+    border-right: 2px solid var(--grid-line-color-bold);
 }
 
 .cell.box-bottom {
-    border-bottom: 2.5px solid var(--grid-line-color-bold);
+    border-bottom: 2px solid var(--grid-line-color-bold);
 }
 
 .cell.given .digit-val {
@@ -433,7 +465,7 @@
 }
 
 .cell.same {
-    background-color: var(--selected-matched-fill-color);
+    background-color: #fef08a;
 }
 
 .cell.selected {
@@ -451,7 +483,7 @@
 }
 
 .digit-val {
-    font-size: clamp(1.15rem, 3.4vw, 1.8rem);
+    font-size: clamp(1.2rem, 3.5vw, 1.85rem);
     line-height: 1;
     user-select: none;
 }
@@ -481,23 +513,20 @@
 .status-container {
     width: 100%;
     text-align: center;
-    padding: 0.45rem 0.65rem;
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    border-radius: var(--radius-sm);
+    padding: 0.35rem 0.5rem;
     box-sizing: border-box;
 }
 
 .status-text {
     margin: 0;
-    font-size: 0.86rem;
+    font-size: 0.9rem;
     font-weight: 600;
-    color: var(--status-bar-text-color);
+    color: var(--ink-soft);
     line-height: 1.35;
 }
 
 /* ==========================================================
-   Number Pad (1-9 Grid - Always 100% inside container)
+   Number Pad (Cute Candy Buttons)
    ========================================================== */
 .number-pad {
     width: 100%;
@@ -514,34 +543,34 @@
     display: flex;
     align-items: center;
     justify-content: center;
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-sm);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: clamp(1rem, 2.8vw, 1.45rem);
+    background: #ffffff;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 12px;
+    box-shadow: 0 3px 8px rgba(244, 63, 94, 0.1);
+    color: var(--ink-dark);
+    font-family: var(--hand-font-family);
+    font-size: clamp(1.15rem, 3vw, 1.6rem);
     font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.04);
-    transition: all 120ms ease;
+    transition: all 120ms cubic-bezier(0.34, 1.56, 0.64, 1);
     padding: 0;
     box-sizing: border-box;
 }
 
 .num-btn:hover {
-    background: var(--status-bar-button-hover-color);
+    background: #fff0f3;
     border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-1.5px);
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.25);
+    color: var(--ink-pink);
+    transform: translateY(-2px) scale(1.04);
+    box-shadow: 0 6px 14px rgba(244, 63, 94, 0.22);
 }
 
 .num-btn:active {
-    transform: translateY(0);
+    transform: translateY(0) scale(0.96);
 }
 
 /* ==========================================================
-   Game Actions (5 buttons - Equal Width, No Horizontal Overflow)
+   Game Actions (Cute Pill Buttons)
    ========================================================== */
 .game-actions {
     width: 100%;
@@ -554,28 +583,28 @@
 .action-btn {
     min-width: 0;
     width: 100%;
-    padding: 0.5rem 0.15rem;
+    padding: 0.45rem 0.2rem;
     display: flex;
-    flex-direction: column;
+    flex-direction: row;
     align-items: center;
     justify-content: center;
-    gap: 3px;
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    border-radius: var(--radius-sm);
-    color: var(--text-color);
-    font-family: inherit;
-    font-size: clamp(0.7rem, 1.6vw, 0.82rem);
-    font-weight: 600;
+    gap: 0.25rem;
+    background: #ffffff;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 12px;
+    box-shadow: 0 2px 8px rgba(244, 63, 94, 0.08);
+    color: var(--ink-dark);
+    font-family: var(--hand-font-family);
+    font-size: clamp(0.85rem, 1.8vw, 1.1rem);
+    font-weight: 700;
     cursor: pointer;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.03);
-    transition: all 140ms ease;
+    transition: all 120ms ease;
     text-align: center;
     box-sizing: border-box;
 }
 
 .action-icon {
-    font-size: 1.05rem;
+    font-size: 1rem;
     line-height: 1;
 }
 
@@ -585,348 +614,259 @@
 }
 
 .action-btn:hover:not(:disabled) {
-    background: var(--status-bar-button-hover-color);
+    background: #fff0f3;
     border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-1px);
+    color: var(--ink-pink);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(244, 63, 94, 0.2);
+}
+
+.action-btn:active:not(:disabled) {
+    transform: translateY(0);
 }
 
 .action-btn.active-mode {
-    background: var(--accent-color);
+    background: #ffe4e6;
     border-color: var(--accent-color);
-    color: #ffffff;
-    box-shadow: 0 4px 14px rgba(99, 102, 241, 0.35);
+    color: var(--ink-pink);
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.25);
 }
 
 .action-btn:disabled {
     opacity: 0.4;
     cursor: not-allowed;
+    box-shadow: none;
 }
 
 /* ==========================================================
-   Side Card (Rules & Live Stats)
+   Side Card (Stitched Strawberry Card)
    ========================================================== */
 .side-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: clamp(1rem, 2.5vw, 1.4rem);
+    background: #fff8f9;
+    border: 2px dashed #f472b6;
+    border-radius: 24px;
+    box-shadow: var(--shadow-cute);
+    padding: clamp(1.1rem, 2.5vw, 1.6rem);
     display: flex;
     flex-direction: column;
-    gap: 0.85rem;
+    gap: 0.95rem;
     width: 100%;
-    max-width: 490px;
+    max-width: 500px;
     margin: 0 auto;
+    position: relative;
     box-sizing: border-box;
 }
 
-.side-badge {
-    font-size: 1.6rem;
-    line-height: 1;
+.side-corner-spark {
+    position: absolute;
+    top: 12px;
+    left: 16px;
+    font-size: 1.2rem;
+}
+
+.side-eyebrow {
+    font-size: 0.78rem;
+    font-weight: 800;
+    letter-spacing: 0.08em;
+    color: var(--ink-pink);
+    margin: 0.2rem 0 0 0;
 }
 
 .side-title {
-    font-size: 1.25rem;
-    font-weight: 800;
+    font-family: var(--hand-font-family);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--ink-dark);
     margin: 0;
+    line-height: 1.15;
 }
 
 .side-desc {
-    font-size: 0.88rem;
-    line-height: 1.5;
-    opacity: 0.75;
+    font-size: 0.92rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
     margin: 0;
 }
 
 .quick-tip-box {
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    border-left: 3px solid var(--accent-color);
-    border-radius: var(--radius-sm);
-    padding: 0.75rem;
+    background: #fff0f3;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 16px;
+    padding: 0.95rem;
 }
 
 .quick-tip-box strong {
     display: block;
-    font-size: 0.8rem;
-    font-weight: 700;
-    color: var(--accent-color);
+    font-family: var(--hand-font-family);
+    font-size: 1.2rem;
+    color: var(--ink-pink);
     margin-bottom: 0.2rem;
 }
 
 .quick-tip-box p {
     margin: 0;
-    font-size: 0.82rem;
-    line-height: 1.45;
-    opacity: 0.8;
-}
-
-.live-stats-box {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-    padding: 0.65rem 0;
-    border-top: 1px solid var(--status-bar-border-color);
-    border-bottom: 1px solid var(--status-bar-border-color);
-}
-
-.stat-row {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    font-size: 0.82rem;
-}
-
-.stat-name {
-    opacity: 0.7;
-    font-weight: 500;
-}
-
-.stat-badge {
-    font-size: 0.72rem;
-    font-weight: 700;
-    padding: 0.12rem 0.45rem;
-    border-radius: 9999px;
-    background: rgba(99, 102, 241, 0.15);
-    color: var(--accent-color);
-}
-
-.stat-val {
-    font-family: var(--mono-font-family);
-    font-weight: 700;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.5;
 }
 
 .text-link {
-    display: inline-block;
-    color: var(--accent-color);
-    font-size: 0.85rem;
+    font-family: var(--hand-font-family);
+    font-size: 1.2rem;
+    color: var(--ink-pink);
     font-weight: 700;
     text-decoration: none;
-    transition: transform 150ms ease;
+    transition: all 140ms ease;
 }
 
 .text-link:hover {
+    color: #be123c;
     transform: translateX(3px);
 }
 
 /* ==========================================================
-   How to Play & About Sections
+   The Rules Section
    ========================================================== */
 .info-section {
-    padding-top: 1.5rem;
-    border-top: 1px solid var(--status-bar-border-color);
+    padding-top: 1rem;
 }
 
 .section-eyebrow {
-    font-size: 0.75rem;
+    font-size: 0.78rem;
     font-weight: 800;
-    letter-spacing: 0.12em;
-    color: var(--accent-color);
-    margin: 0 0 0.3rem 0;
+    letter-spacing: 0.1em;
+    color: var(--ink-pink);
+    margin: 0 0 0.35rem 0;
 }
 
 .section-title {
-    font-size: 1.5rem;
-    font-weight: 800;
-    letter-spacing: -0.02em;
+    font-family: var(--hand-font-family);
+    font-size: 2.2rem;
+    font-weight: 700;
+    color: var(--ink-dark);
     margin: 0 0 1.25rem 0;
 }
 
 .steps-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1.25rem;
+    gap: 1.5rem;
 }
 
 .step-card {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
+    background: #ffffff;
+    border: 1.5px solid var(--border-pink);
+    border-radius: 20px;
     padding: 1.25rem;
+    box-shadow: 0 6px 18px rgba(244, 63, 94, 0.08);
     display: flex;
     flex-direction: column;
 }
 
 .step-num {
-    font-family: var(--mono-font-family);
-    font-size: 1.4rem;
-    font-weight: 800;
-    color: var(--accent-color);
-    margin-bottom: 0.35rem;
+    font-family: var(--hand-font-family);
+    font-size: 1.1rem;
+    font-weight: 700;
+    color: var(--ink-pink);
 }
 
 .step-card h3 {
-    font-size: 1.05rem;
+    font-family: var(--hand-font-family);
+    font-size: 1.45rem;
     font-weight: 700;
-    margin: 0 0 0.4rem 0;
+    color: var(--ink-dark);
+    margin: 0.25rem 0 0.45rem 0;
 }
 
 .step-card p {
-    font-size: 0.85rem;
-    line-height: 1.5;
-    opacity: 0.75;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    line-height: 1.55;
     margin: 0;
 }
 
 .rule-footer {
-    font-size: 0.85rem;
-    opacity: 0.7;
-    margin: 1.25rem 0 0 0;
+    font-size: 0.88rem;
+    color: var(--ink-soft);
+    margin: 1.5rem 0 0 0;
+    font-style: italic;
     text-align: center;
 }
 
-/* Project section */
-.project-section {
-    background: var(--card-bg);
-    border: 1px solid var(--card-border);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--shadow-card);
-    padding: 1.5rem;
+/* ==========================================================
+   Project Section
+   ========================================================== */
+.project-card-pink {
+    background: #fff0f3;
+    border: 2px solid var(--border-pink);
+    border-radius: 24px;
+    box-shadow: var(--shadow-cute);
+    padding: 1.75rem;
+    display: grid;
+    grid-template-columns: 1fr 1.6fr;
+    gap: 1.5rem;
+    align-items: center;
+}
+
+.project-eyebrow {
+    font-size: 0.75rem;
+    font-weight: 800;
+    letter-spacing: 0.1em;
+    color: var(--ink-pink);
+    margin: 0 0 0.25rem 0;
+}
+
+.project-title {
+    font-family: var(--hand-font-family);
+    font-size: 1.85rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    margin: 0;
+    line-height: 1.2;
 }
 
 .project-body {
-    font-size: 0.9rem;
+    font-size: 0.94rem;
+    color: var(--ink-soft);
     line-height: 1.6;
-    opacity: 0.8;
     margin: 0;
-    max-width: 800px;
 }
 
-/* Footer */
+/* ==========================================================
+   Footer
+   ========================================================== */
 .site-footer {
     display: flex;
     align-items: center;
     justify-content: space-between;
-    padding: 1.25rem 1.5rem;
-    border-top: 1px solid var(--status-bar-border-color);
-    font-size: 0.82rem;
-    opacity: 0.7;
+    padding: 1.25rem 1rem;
+    border-top: 2px dashed var(--border-pink);
 }
 
 .footer-brand {
+    font-family: var(--hand-font-family);
+    font-size: 1.4rem;
     font-weight: 700;
+    color: var(--ink-dark);
+}
+
+.footer-tagline {
+    font-family: var(--hand-font-family);
+    font-size: 1.1rem;
+    color: var(--ink-soft);
 }
 
 /* ==========================================================
-   Victory Modal
+   Modals
    ========================================================== */
-.victory-backdrop {
+.victory-backdrop, .tour-backdrop {
     position: fixed;
     top: 0;
     left: 0;
     right: 0;
     bottom: 0;
-    background: var(--modal-backdrop-color);
-    backdrop-filter: blur(8px);
-    -webkit-backdrop-filter: blur(8px);
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 1rem;
-    z-index: 1000;
-    animation: fadeIn 200ms ease;
-}
-
-.victory-card {
-    background: var(--modal-bg-color);
-    border: 1px solid var(--modal-border-color);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--modal-box-shadow);
-    padding: 2rem 1.75rem;
-    max-width: 420px;
-    width: 100%;
-    text-align: center;
-    animation: scaleIn 250ms cubic-bezier(0.16, 1, 0.3, 1);
-}
-
-.victory-icon {
-    font-size: 3rem;
-    margin-bottom: 0.75rem;
-}
-
-.victory-card h2 {
-    font-size: 1.6rem;
-    font-weight: 800;
-    margin: 0 0 0.5rem 0;
-}
-
-.victory-card p {
-    font-size: 0.92rem;
-    opacity: 0.8;
-    margin: 0 0 1.25rem 0;
-}
-
-.victory-stats {
-    display: flex;
-    justify-content: center;
-    gap: 1.5rem;
-    padding: 0.75rem 0;
-    margin-bottom: 1.5rem;
-    border-top: 1px solid var(--status-bar-border-color);
-    border-bottom: 1px solid var(--status-bar-border-color);
-}
-
-.v-stat {
-    display: flex;
-    flex-direction: column;
-}
-
-.v-label {
-    font-size: 0.75rem;
-    opacity: 0.65;
-    text-transform: uppercase;
-    font-weight: 600;
-}
-
-.v-val {
-    font-family: var(--mono-font-family);
-    font-size: 1.15rem;
-    font-weight: 700;
-    color: var(--accent-color);
-}
-
-.victory-actions {
-    display: flex;
-    gap: 0.75rem;
-    justify-content: center;
-}
-
-.v-btn {
-    border: none;
-    border-radius: var(--radius-md);
-    padding: 0.6rem 1.25rem;
-    font-size: 0.9rem;
-    font-weight: 700;
-    cursor: pointer;
-    transition: all 160ms ease;
-}
-
-.v-btn.primary {
-    background: var(--accent-color);
-    color: #ffffff;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-.v-btn.secondary {
-    background: var(--btn-secondary-bg);
-    border: 1px solid var(--btn-secondary-border);
-    color: var(--text-color);
-}
-
-/* ==========================================================
-   Tour Modal
-   ========================================================== */
-.tour-backdrop {
-    position: fixed;
-    top: 0;
-    left: 0;
-    right: 0;
-    bottom: 0;
-    background: var(--modal-backdrop-color);
+    background: rgba(74, 32, 53, 0.45);
     backdrop-filter: blur(6px);
-    -webkit-backdrop-filter: blur(6px);
     display: flex;
     align-items: center;
     justify-content: center;
@@ -934,95 +874,46 @@
     z-index: 1000;
 }
 
-.tour-card {
-    background: var(--modal-bg-color);
-    border: 1px solid var(--modal-border-color);
-    border-radius: var(--radius-lg);
-    box-shadow: var(--modal-box-shadow);
-    padding: 1.5rem;
+.victory-card, .tour-card {
+    background: #ffffff;
+    border: 2px solid var(--border-pink);
+    border-radius: 24px;
+    box-shadow: 0 20px 50px rgba(244, 63, 94, 0.25);
+    padding: 1.75rem;
     max-width: 440px;
     width: 100%;
 }
 
-.tour-header {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-    margin-bottom: 0.75rem;
-}
-
 .tour-step-badge {
-    font-size: 0.75rem;
+    font-family: var(--hand-font-family);
+    font-size: 1.05rem;
     font-weight: 700;
-    padding: 0.2rem 0.6rem;
-    border-radius: 9999px;
-    background: rgba(99, 102, 241, 0.15);
-    color: var(--accent-color);
-}
-
-.tour-close {
-    background: transparent;
-    border: none;
-    font-size: 1.25rem;
-    color: var(--text-color);
-    opacity: 0.6;
-    cursor: pointer;
+    color: var(--ink-pink);
 }
 
 .tour-title {
-    font-size: 1.25rem;
-    font-weight: 800;
-    margin: 0 0 0.5rem 0;
-}
-
-.tour-desc {
-    font-size: 0.9rem;
-    line-height: 1.55;
-    opacity: 0.8;
-    margin: 0 0 1.25rem 0;
-}
-
-.tour-actions {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-}
-
-.tour-skip {
-    background: transparent;
-    border: none;
-    color: var(--text-color);
-    font-size: 0.85rem;
-    font-weight: 600;
-    cursor: pointer;
-    opacity: 0.65;
+    font-family: var(--hand-font-family);
+    font-size: 1.7rem;
+    font-weight: 700;
+    color: var(--ink-dark);
+    margin: 0.35rem 0 0.5rem 0;
 }
 
 .tour-next {
-    background: var(--accent-color);
+    background: linear-gradient(135deg, #f43f5e 0%, #ec4899 100%);
     color: #ffffff;
     border: none;
-    border-radius: var(--radius-md);
-    padding: 0.5rem 1.2rem;
-    font-size: 0.88rem;
+    border-radius: 12px;
+    box-shadow: 0 4px 14px rgba(244, 63, 94, 0.3);
+    font-family: var(--hand-font-family);
+    font-size: 1.15rem;
     font-weight: 700;
+    padding: 0.45rem 1.25rem;
     cursor: pointer;
-    box-shadow: 0 4px 12px rgba(99, 102, 241, 0.3);
-}
-
-/* Animations */
-@keyframes fadeIn {
-    from { opacity: 0; }
-    to { opacity: 1; }
-}
-
-@keyframes scaleIn {
-    from { transform: scale(0.94); opacity: 0; }
-    to { transform: scale(1); opacity: 1; }
 }
 
 /* ==========================================================
-   Mobile & Responsive Viewport Rules
+   Mobile Responsive Rules
    ========================================================== */
 @media (max-width: 880px) {
     .game-layout {
@@ -1035,15 +926,20 @@
     .hero {
         flex-direction: column;
         align-items: flex-start;
-        gap: 0.5rem;
+        gap: 0.75rem;
     }
 
-    .hero-badge {
+    .hero-stamp-wrapper {
         display: none;
     }
 
     .steps-grid {
         grid-template-columns: 1fr;
+    }
+
+    .project-card-pink {
+        grid-template-columns: 1fr;
+        gap: 0.75rem;
     }
 }
 
@@ -1054,25 +950,20 @@
 
     .main-content {
         padding: 1rem 0.75rem 3rem 0.75rem;
-        gap: 1.25rem;
+        gap: 1.5rem;
     }
 
     .game-card {
         padding: 0.85rem 0.75rem;
-        gap: 0.8rem;
-    }
-
-    .card-title {
-        font-size: 1.2rem;
     }
 
     .difficulty-picker select {
-        max-width: 130px;
+        max-width: 120px;
     }
 
     .site-footer {
         flex-direction: column;
-        gap: 0.5rem;
+        gap: 0.35rem;
         text-align: center;
     }
 }

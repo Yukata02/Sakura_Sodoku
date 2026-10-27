@@ -79,7 +79,7 @@ export default function SudokuStudio() {
         setHintsUsed(0);
         setMistakesCount(0);
         setUndoStack([]);
-        setStatusMsg('New game started. Choose a square, then enter a number.');
+        setStatusMsg('Welcome! Take a breath, pick any square, and enjoy.');
     }, [difficulty]);
 
     // Initial mount start
@@ -186,11 +186,11 @@ export default function SudokuStudio() {
         if (isSolved) {
             setFinished(true);
             setIsTimerRunning(false);
-            setStatusMsg('🎉 Puzzle Solved! Magnificent logic!');
+            setStatusMsg('✨ Delightful! You solved the puzzle with calm grace.');
             launchConfetti();
             playVictoryFanfare();
         } else {
-            setStatusMsg(`Placed ${number}. Keep going!`);
+            setStatusMsg(`Placed ${number}. Taking shape nicely!`);
         }
     }, [selected, finished, puzzle, notesMode, entries, solution, saveSnapshot]);
 
@@ -210,7 +210,7 @@ export default function SudokuStudio() {
         }
 
         if (target < 0) {
-            setStatusMsg('All placed numbers are already correct!');
+            setStatusMsg('Everything placed so far sits in perfect harmony!');
             return;
         }
 
@@ -229,7 +229,7 @@ export default function SudokuStudio() {
 
         const r = Math.floor(target / 9) + 1;
         const c = (target % 9) + 1;
-        setStatusMsg(`💡 Hint: Row ${r}, Column ${c} is ${correctVal}.`);
+        setStatusMsg(`💡 Gentle hint: Row ${r}, Column ${c} can be ${correctVal}.`);
 
         const isSolved = entries.every((val, i) => i === target ? true : (puzzle[i] || val === solution[i]));
         if (isSolved) {
@@ -248,10 +248,10 @@ export default function SudokuStudio() {
         if (mistakes > 0) {
             playErrorSound();
             setMistakesCount(m => m + mistakes);
-            setStatusMsg(`⚠️ ${mistakes} ${mistakes === 1 ? 'entry needs' : 'entries need'} another look. Red squares highlight conflicts.`);
+            setStatusMsg(`✦ A small conflict found in ${mistakes === 1 ? 'one square' : mistakes + ' squares'} — take a gentle look.`);
         } else {
             playDigitSound('5');
-            setStatusMsg('✨ Looking good! No mistakes detected so far.');
+            setStatusMsg('✨ Looking wonderful! Every square placed so far is in harmony.');
         }
     }, [finished, solution, entries]);
 
@@ -327,42 +327,29 @@ export default function SudokuStudio() {
             <header className="site-header">
                 <div className="site-header-inner">
                     <a className="brand" href="#top">
-                        <div className="brand-gem">
-                            <svg viewBox="0 0 32 32" width="22" height="22" fill="none">
-                                <rect x="2" y="2" width="28" height="28" rx="8" fill="url(#brandGrad)" />
-                                <rect x="6" y="6" width="5.5" height="5.5" rx="1.5" fill="#ffffff" />
-                                <rect x="13.25" y="13.25" width="5.5" height="5.5" rx="1.5" fill="#38bdf8" />
-                                <rect x="20.5" y="20.5" width="5.5" height="5.5" rx="1.5" fill="#ffffff" />
-                                <defs>
-                                    <linearGradient id="brandGrad" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#6366f1" />
-                                        <stop offset="100%" stopColor="#38bdf8" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-                        </div>
-                        <span>Nova<strong>Sudoku</strong></span>
-                        <span className="brand-chip">Studio</span>
+                        <span className="brand-gem" role="img" aria-label="Strawberry">🍓</span>
+                        <span className="brand-text">Sakura<strong>Sudoku</strong></span>
+                        <span className="brand-chip">🎀 Sweet &amp; Cozy</span>
                     </a>
                     <nav className="site-nav">
-                        <a href="#how-to-play">How to Play</a>
+                        <a href="#how-to-play">How to play</a>
                         <a href="#project">About</a>
                         <div className="header-controls">
                             <button
                                 type="button"
                                 className="icon-ctrl-btn"
-                                title={soundOn ? "Mute Audio" : "Enable Audio"}
+                                title={soundOn ? "Mute Acoustic Chimes" : "Enable Acoustic Chimes"}
                                 onClick={handleSoundToggle}
                             >
-                                {soundOn ? "🔊" : "🔇"}
+                                {soundOn ? "🔔" : "🔕"}
                             </button>
                             <button
                                 type="button"
                                 className="icon-ctrl-btn"
-                                title={isDark ? "Switch to Light Mode" : "Switch to Dark Mode"}
+                                title={isDark ? "Switch to Strawberry Milk" : "Switch to Velvet Berry"}
                                 onClick={handleThemeToggle}
                             >
-                                {isDark ? "☀️" : "🌙"}
+                                {isDark ? "🌸" : "🌙"}
                             </button>
                         </div>
                     </nav>
@@ -373,14 +360,16 @@ export default function SudokuStudio() {
                 {/* Hero Banner */}
                 <section className="hero">
                     <div className="hero-content">
-                        <p className="eyebrow">✦ PURE LOGIC • SUBLIME SATISFACTION</p>
-                        <h1 className="hero-title">Make room for <em>one more number.</em></h1>
-                        <p className="hero-copy">Grab your keyboard or tap away. A crisp, guaranteed-unique puzzle awaits your intuition.</p>
+                        <p className="eyebrow">🍓 SWEET LOGIC • RELAXING MOMENTS</p>
+                        <h1 className="hero-title">Sweet numbers, <span className="highlight-text">peaceful minds. 🌸</span></h1>
+                        <p className="hero-copy">A cozy, pastel pink puzzle haven. Take a soft breath and unwind with guaranteed-unique puzzles at your own sweet pace.</p>
                     </div>
-                    <div className="hero-badge">
-                        <span className="badge-spark">✧</span>
-                        <span className="badge-grid">9 × 9</span>
-                        <small className="badge-sub">one clear goal</small>
+                    <div className="hero-stamp-wrapper">
+                        <div className="hero-stamp-badge">
+                            <span className="stamp-grid">9 × 9</span>
+                            <span className="stamp-sub">sweet &amp; calm</span>
+                        </div>
+                        <span className="stamp-star">🌸</span>
                     </div>
                 </section>
 
@@ -390,8 +379,8 @@ export default function SudokuStudio() {
                     <div className="game-card">
                         <div className="game-heading" id="game-heading">
                             <div>
-                                <p className="card-eyebrow">YOUR PUZZLE</p>
-                                <h2 className="card-title">Let's play.</h2>
+                                <p className="card-eyebrow">DAILY SWEETNESS 🍓</p>
+                                <h2 className="card-title">Relax &amp; Play 🌸</h2>
                             </div>
                             <div className="heading-actions">
                                 <button
@@ -399,10 +388,10 @@ export default function SudokuStudio() {
                                     type="button"
                                     onClick={() => setTourStep(0)}
                                 >
-                                    ✦ Take a tour
+                                    ✨ Quick Tour
                                 </button>
                                 <div className="timer-badge">
-                                    <span className="timer-dot"></span>
+                                    <span className="timer-icon">⏱</span>
                                     <span>{formattedTime}</span>
                                 </div>
                             </div>
@@ -421,10 +410,10 @@ export default function SudokuStudio() {
                                         startNewGame(newDiff);
                                     }}
                                 >
-                                    <option value="easy">Easy (Relaxing)</option>
-                                    <option value="medium">Medium (Balanced)</option>
-                                    <option value="hard">Hard (Challenging)</option>
-                                    <option value="expert">Expert (Master)</option>
+                                    <option value="easy">Easy 🍓</option>
+                                    <option value="medium">Medium 🌸</option>
+                                    <option value="hard">Hard 🎀</option>
+                                    <option value="expert">Expert 💖</option>
                                 </select>
                             </div>
                             <button
@@ -432,7 +421,7 @@ export default function SudokuStudio() {
                                 className="new-game-btn"
                                 onClick={() => startNewGame(difficulty)}
                             >
-                                New game
+                                New puzzle 💖
                             </button>
                         </div>
 
@@ -513,18 +502,18 @@ export default function SudokuStudio() {
                                 className={`action-btn ${notesMode ? 'active-mode' : ''}`}
                                 onClick={() => {
                                     setNotesMode(m => !m);
-                                    setStatusMsg(!notesMode ? 'Notes mode ON: pencil in candidates.' : 'Notes mode OFF: place numbers.');
+                                    setStatusMsg(!notesMode ? 'Notes mode ON 🎀 pencil in possibilities gently.' : 'Notes mode OFF 🌸 placing numbers.');
                                 }}
                             >
-                                <span className="action-icon">✏️</span>
-                                <span className="action-label">Notes {notesMode ? '• ON' : ''}</span>
+                                <span className="action-icon">🎀</span>
+                                <span className="action-label">Notes {notesMode ? 'On' : 'Off'}</span>
                             </button>
                             <button
                                 type="button"
                                 className="action-btn"
                                 onClick={handleErase}
                             >
-                                <span className="action-icon">🧹</span>
+                                <span className="action-icon">🫧</span>
                                 <span className="action-label">Erase</span>
                             </button>
                             <button
@@ -532,7 +521,7 @@ export default function SudokuStudio() {
                                 className="action-btn"
                                 onClick={handleHint}
                             >
-                                <span className="action-icon">💡</span>
+                                <span className="action-icon">💖</span>
                                 <span className="action-label">Hint</span>
                             </button>
                             <button
@@ -540,7 +529,7 @@ export default function SudokuStudio() {
                                 className="action-btn"
                                 onClick={handleCheck}
                             >
-                                <span className="action-icon">✅</span>
+                                <span className="action-icon">🌸</span>
                                 <span className="action-label">Check</span>
                             </button>
                             <button
@@ -557,79 +546,64 @@ export default function SudokuStudio() {
 
                     {/* Side Card: Guidance & Live Stats */}
                     <aside className="side-card">
-                        <div className="side-badge">💡</div>
-                        <p className="card-eyebrow">MASTER THE LOGIC</p>
-                        <h2 className="side-title">Every square has a place.</h2>
+                        <span className="side-corner-spark">🌸</span>
+                        <p className="side-eyebrow">A SWEET REMINDER 🍓</p>
+                        <h2 className="side-title">Every number finds its bloom.</h2>
                         <p className="side-desc">
-                            Fill empty squares with numbers <strong>1 through 9</strong>. Every horizontal row, vertical column, and bold 3 × 3 box must contain each number exactly once.
+                            Fill the cozy squares with numbers 1 through 9. Each row, column, and bold 3 × 3 box holds each number once.
                         </p>
 
                         <div className="quick-tip-box">
-                            <strong>✦ Pro Tip</strong>
-                            <p>Look for lines or 3x3 blocks with the most prefilled numbers first. Toggle Notes to narrow down possibilities.</p>
-                        </div>
-
-                        <div className="live-stats-box">
-                            <div className="stat-row">
-                                <span className="stat-name">Difficulty:</span>
-                                <span className="stat-badge">{difficulty.toUpperCase()}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-name">Hints Used:</span>
-                                <span className="stat-val">{hintsUsed}</span>
-                            </div>
-                            <div className="stat-row">
-                                <span className="stat-name">Mistakes Flagged:</span>
-                                <span className="stat-val">{mistakesCount}</span>
-                            </div>
+                            <strong>🍓 Sweet tip</strong>
+                            <p>Start with a row, column, or box that has lots of numbers. Use Notes to jot down possibilities with zero stress.</p>
                         </div>
 
                         <a href="#how-to-play" className="text-link">
-                            Read the complete rules ➔
+                            Read the gentle guide ➔
                         </a>
                     </aside>
                 </section>
 
                 {/* How to Play Section */}
                 <section id="how-to-play" className="info-section">
-                    <p className="section-eyebrow">THE RULES</p>
-                    <h2 className="section-title">How to play Sudoku</h2>
+                    <p className="section-eyebrow">THE THREE BLOOMS 🌸</p>
+                    <h2 className="section-title">How to enjoy your puzzle</h2>
                     <div className="steps-grid">
                         <article className="step-card">
-                            <span className="step-num">01</span>
-                            <h3>Scan for Missing Numbers</h3>
-                            <p>Check any row, column, or 3 × 3 box. Each zone must feature numbers 1 through 9 with zero repeats.</p>
+                            <span className="step-num">01 🍓</span>
+                            <h3>Scan the Blooms</h3>
+                            <p>Scan a row, column, or 3 × 3 box. Each must contain numbers 1 through 9 with zero repeats.</p>
                         </article>
                         <article className="step-card">
-                            <span className="step-num">02</span>
-                            <h3>Select & Enter</h3>
-                            <p>Click or tap an empty square, then choose a number from the keypad or your physical keyboard (1–9).</p>
+                            <span className="step-num">02 🌸</span>
+                            <h3>Pick &amp; Blossom</h3>
+                            <p>Click or tap an empty square and select a number from your candy keypad or keyboard.</p>
                         </article>
                         <article className="step-card">
-                            <span className="step-num">03</span>
-                            <h3>Note & Deduce</h3>
-                            <p>Turn on Notes to pencil candidates. Use Hint for logical explanations, or Check to highlight mistakes.</p>
+                            <span className="step-num">03 🎀</span>
+                            <h3>Pencil &amp; Nudge</h3>
+                            <p>Toggle Notes for possibilities. Erase an entry, request a sweet hint, or check your progress at any time.</p>
                         </article>
                     </div>
-                    <p className="rule-footer">Prefilled numbers are locked and cannot be edited. The puzzle is complete when all 81 squares are filled correctly.</p>
+                    <p className="rule-footer">Prefilled numbers are locked anchors. The puzzle is complete when all 81 squares sit in harmony 🌸.</p>
                 </section>
 
                 {/* About Project Section */}
-                <section id="project" className="project-section">
-                    <div className="project-header">
-                        <p className="section-eyebrow">ABOUT NOVASUDOKU</p>
-                        <h2 className="section-title">Designed for a calmer, focused puzzle break.</h2>
+                <section id="project" className="project-card-pink">
+                    <div className="project-left">
+                        <p className="project-eyebrow">ABOUT SAKURASUDOKU 🍓</p>
+                        <h2 className="project-title">Designed for joyful, calming puzzle breaks 🌸</h2>
                     </div>
                     <p className="project-body">
-                        NovaSudoku combines high-speed procedural puzzle generation, intelligent client-side hint deduction, tactile acoustic feedback, and responsive layouts across desktop and mobile. Built with modern React and web standards.
+                        SakuraSudoku is a cute, pastel pink puzzle haven designed for mindful daily play. Featuring four sweet difficulty levels, gentle pencil notes, kind hints, acoustic chimes, and smooth responsive touch controls on both mobile and desktop.
                     </p>
                 </section>
             </main>
 
             {/* Footer */}
             <footer className="site-footer">
-                <span className="footer-brand">NovaSudoku</span>
-                <span className="footer-tagline">A little progress, one square at a time.</span>
+                <span className="footer-brand">🍓 SakuraSudoku</span>
+                <span className="footer-tagline">Made with sweet logic &amp; calm vibes 🌸</span>
             </footer>
 
             {/* Victory Modal */}
@@ -642,6 +616,7 @@ export default function SudokuStudio() {
                         <div className="victory-stats-summary">
                             <div><span>Difficulty</span><strong>{difficulty.toUpperCase()}</strong></div>
                             <div><span>Hints</span><strong>{hintsUsed}</strong></div>
+                            <div><span>Mistakes</span><strong>{mistakesCount}</strong></div>
                         </div>
                         <div className="victory-modal-actions">
                             <button
