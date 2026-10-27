@@ -170,7 +170,7 @@ function SudokuGrid({grid, gridId, dimensions, isPaused, mouseDownHandler, mouse
                 style={{width: dimensions.gridLength}}
                 viewBox={`0 0 ${dim.width} ${dim.height}`}
             >
-                <rect className="grid-bg" width="100%" height="100%" />
+                <rect className="grid-bg" width="100%" height="100%" rx="28" />
                 {cellContents}
                 <GridLines cellSize={dim.cellSize} marginSize={dim.marginSize} />
                 {cellCovers}

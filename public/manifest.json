@@ -1,6 +1,6 @@
 {
-  "short_name": "Sudoku",
-  "name": "SudokuExchange.com",
+  "short_name": "NovaSudoku",
+  "name": "NovaSudoku — Elegant Pure Logic",
   "icons": [
     {
       "src": "favicon.ico",
@@ -20,6 +20,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#090d16",
+  "background_color": "#090d16"
 }

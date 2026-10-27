@@ -10,11 +10,13 @@
 }
 
 .spinner div {
-    width: 15px;
-    height: 15px;
+    width: 14px;
+    height: 14px;
     background-color: var(--spinner-color);
-    border: 1px solid var(--background-color);
+    border: none;
+    border-radius: 4px;
     float: left;
+    margin: 1px;
     animation: spinner-gridScaleDelay 1.3s infinite ease-in-out;
 }
 .spinner div:nth-child(1) { animation-delay: 0.2s; }

@@ -106,6 +106,13 @@ function modalHintContent ({loading, loadingFailed, errorMessage, hint, hotSpotH
             primaryButtonText: "OK",
         }
     }
+    else {
+        return {
+            title: "No Available Hint",
+            modalContent: <p>All available deductions have been applied, or the grid is already complete!</p>,
+            primaryButtonText: "OK",
+        }
+    }
 }
 
 function HintButtons({loading, hint, modalHandler, menuHandler, children}) {
@@ -182,7 +189,7 @@ export default function ModalHint({modalState, modalHandler, menuHandler}) {
                     >{primaryButtonText}</HintButtons>
                 </div>
                 <div className="hint-footer">
-                    <span>Hints by: <a target="_blank" rel="noopener noreferrer" href={solverURL}>Sukaku Explainer</a></span>
+                    <span>Intelligent Hints by NovaSudoku Logic Engine</span>
                 </div>
             </div>
         </div>

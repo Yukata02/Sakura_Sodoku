@@ -1,10 +1,24 @@
-
 .sudoku-grid {
     text-align: center;
 }
 
+.sudoku-grid:not(.mini):not(.hint) svg {
+    display: block;
+    background: var(--grid-surface-color);
+    border-radius: 20px;
+    box-shadow: var(--shadow-card);
+    border: 1px solid var(--card-border);
+    transition: background 200ms ease, box-shadow 200ms ease;
+}
+
 .sudoku-grid.mini {
     display: inline-block;
+}
+
+.sudoku-grid.mini svg {
+    border-radius: 10px;
+    background: var(--grid-surface-color);
+    box-shadow: 0 6px 16px rgba(0, 0, 0, 0.08);
 }
 
 .sudoku-grid .line {
@@ -33,6 +47,7 @@ path.selection-outline {
 
 .cell-select-match-overlay {
     fill: transparent;
+    transition: fill 120ms ease;
 }
 
 .cell-bg .color-code-1 { fill: var(--cell-bg-1-fill-color); }
@@ -75,7 +90,8 @@ text.digit.error {
 
 text.digit {
     fill: var(--digit-color);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--app-font-family);
+    font-weight: 700;
 }
 
 .solved text.digit {
@@ -85,6 +101,7 @@ text.digit {
 text.digit.given,
 .mini text.digit {
     fill: var(--given-digit-color);
+    font-weight: 800;
 }
 
 a:visited .mini text.digit {
@@ -121,7 +138,8 @@ text.inner-pencil,
 .outer-pencil text,
 .simple-pencil text {
     fill: var(--pencil-mark-color);
-    font-family: Arial, Helvetica, sans-serif;
+    font-family: var(--app-font-family);
+    font-weight: 600;
 }
 
 .sudoku-grid.hint .cell-bg {
@@ -173,10 +191,10 @@ text.inner-pencil,
 .animate .solved .cell-bg[data-ring="1"] .cell-select-match-overlay { animation: 1600ms linear 400ms 1 running rainbow; }
 
 @keyframes rainbow {
-    from { fill: #8bb3ff; }
-    20%  { fill: #f1dbff; }
-    40%  { fill: #ffb5da; }
-    60%  { fill: #ff9b5b; }
-    70%  { fill: #ffff9a; }
+    from { fill: #818cf8; }
+    20%  { fill: #c084fc; }
+    40%  { fill: #f472b6; }
+    60%  { fill: #fb923c; }
+    70%  { fill: #fde047; }
     to   { fill: var(--solved-fill-color); }
 }

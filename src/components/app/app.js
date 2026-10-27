@@ -18,6 +18,12 @@ import {
     MODAL_TYPE_HINT
 } from '../../lib/modal-types';
 
+import {
+    playDigitSound,
+    playPencilSound,
+    playEraseSound
+} from '../../lib/sound-effects';
+
 const FETCH_DELAY = 1000;
 const RETRY_INTERVAL = 3000;
 const MAX_RETRIES = 10;
@@ -147,15 +153,19 @@ function docKeyDownHandler (e, modalActive, setGrid, solved, inputMode) {
             let cellOp;
             if ((e.shiftKey && ctrlOrMeta) || inputMode === 'color') {
                 cellOp = 'setCellColor';
+                playPencilSound();
             }
             else if (ctrlOrMeta || inputMode === 'inner') {
                 cellOp = 'toggleInnerPencilMark';
+                playPencilSound();
             }
             else if (e.shiftKey || inputMode === 'outer') {
                 cellOp = 'toggleOuterPencilMark';
+                playPencilSound();
             }
             else {
                 cellOp = modelHelpers.defaultDigitOpForSelection(grid);
+                playDigitSound(digit);
             }
             return modelHelpers.updateSelectedCells(grid, cellOp, digit);
         });
@@ -167,6 +177,7 @@ function docKeyDownHandler (e, modalActive, setGrid, solved, inputMode) {
             // We don't want browser to treat this as a back button action
             e.preventDefault();
         }
+        playEraseSound();
         setGrid((grid) => modelHelpers.updateSelectedCells(grid, 'clearCell'));
         return;
     }
@@ -359,21 +370,26 @@ function vkbdKeyPressHandler(e, setGrid, inputMode) {
         setGrid((grid) => {
             const selectedCellCount = grid.get("cells").count((c) => c.get("isSelected"));
             if (e.ctrlKey || e.metaKey || inputMode === 'inner') {
+                playPencilSound();
                 return modelHelpers.updateSelectedCells(grid, 'toggleInnerPencilMark', keyValue);
             }
             else if (inputMode === 'color') {
+                playPencilSound();
                 return modelHelpers.updateSelectedCells(grid, 'setCellColor', keyValue);
             }
             else if (e.shiftKey || inputMode === 'outer' || selectedCellCount > 1) {
+                playPencilSound();
                 return modelHelpers.updateSelectedCells(grid, 'toggleOuterPencilMark', keyValue);
             }
             else {
+                playDigitSound(keyValue);
                 return modelHelpers.updateSelectedCells(grid, 'setDigit', keyValue);
             }
         });
         return;
     }
     else if (keyValue === 'delete') {
+        playEraseSound();
         setGrid((grid) => modelHelpers.updateSelectedCells(grid, 'clearCell'));
         return;
     }
@@ -467,18 +483,30 @@ function getDimensions(winSize) {
     if (dim.width > dim.height) {
         dim.orientation = 'landscape';
         dim.gridLength = Math.min(
-            Math.floor(dim.height * 0.80),
+            Math.floor(dim.height * 0.82),
             Math.floor(dim.width * 0.52)
         );
-        dim.vkbdWidth = Math.floor(dim.gridLength * 0.56);
+        dim.vkbdWidth = Math.min(
+            Math.floor(dim.gridLength * 0.65),
+            Math.floor((dim.width - dim.gridLength) * 0.88)
+        );
     }
     else {
         dim.orientation = 'portrait';
-        dim.gridLength = Math.min(
-            Math.floor(dim.height * 0.54),
-            Math.floor(dim.width * 0.95)
+        const headerHeight = dim.width < 680 ? 62 : 72;
+        const availableHeight = dim.height - headerHeight - 16;
+        const maxGridByHeight = Math.floor(availableHeight * 0.52);
+        const maxGridByWidth = Math.floor(dim.width * 0.94);
+        dim.gridLength = Math.min(maxGridByHeight, maxGridByWidth);
+
+        // Keyboard height in portrait is vkbdWidth * (970 / 1240) ~= vkbdWidth * 0.782
+        const remainingHeight = Math.max(180, availableHeight - dim.gridLength - 20);
+        const maxVkbdWidthByHeight = Math.floor(remainingHeight / 0.782);
+        dim.vkbdWidth = Math.min(
+            Math.floor(dim.width * 0.94),
+            dim.gridLength,
+            Math.max(260, maxVkbdWidthByHeight)
         );
-        dim.vkbdWidth = Math.floor(dim.gridLength * 0.7);
     }
     return dim;
 }
@@ -578,6 +606,16 @@ function App() {
         />
     );
 
+    const isDark = !!settings[SETTINGS.darkMode];
+    const onToggleTheme = useCallback(() => {
+        setGrid(grid => {
+            const currSettings = grid.get('settings');
+            const newDark = !currSettings[SETTINGS.darkMode];
+            const updated = { ...currSettings, [SETTINGS.darkMode]: newDark };
+            return modelHelpers.saveSettings(grid, updated);
+        });
+    }, []);
+
     return (
         <div className={classes.join(' ')} onMouseDown={mouseDownHandler}>
             <SvgSprites />
@@ -592,6 +630,8 @@ function App() {
                 menuHandler={menuHandler}
                 pauseHandler={pauseHandler}
                 initialDigits={grid.get('initialDigits')}
+                isDark={isDark}
+                onToggleTheme={onToggleTheme}
             />
             <div className="ui-elements">
                 <SudokuGrid

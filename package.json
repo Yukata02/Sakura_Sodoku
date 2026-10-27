@@ -1,7 +1,7 @@
 {
-  "name": "sudoku-web-app",
-  "version": "1.0.32",
-  "description": "A web application for solving & sharing Sudoku puzzles. Created for SudokuExchange.com",
+  "name": "nova-sudoku",
+  "version": "2.0.0",
+  "description": "NovaSudoku — A modern, elegant pure logic Sudoku web application with intelligent solving hints, acoustic feedback, and quick themes.",
   "author": {
     "name": "Grant McLean",
     "email": "grant@mclean.net.nz",
@@ -47,6 +47,5 @@
       "last 1 safari version"
     ]
   },
-  "homepage": ".",
-  "proxy": "http://sudokuexchange.localhost:1080"
+  "homepage": "/"
 }

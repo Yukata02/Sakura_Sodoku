@@ -91,7 +91,7 @@ function VkbdButton({btn, inputMode, completed, toolTipText}) {
                 y={btn.top}
                 width={btn.width}
                 height={btn.height}
-                rx="20"
+                rx="32"
             />
             {content}
             <rect
@@ -159,7 +159,7 @@ export default function VirtualKeyboard({dimensions, inputMode, completedDigits,
                 style={{width: dimensions.vkbdWidth}}
                 viewBox={`0 0 ${layout.width} ${layout.height}`}
             >
-                <rect className="vkbd-background" width="100%" height="100%" rx="40" />
+                <rect className="vkbd-background" width="100%" height="100%" rx="52" />
                 <VkbdModePanel
                     modeButtons={modeButtons}
                     simplePencilMarking={simplePencilMarking}

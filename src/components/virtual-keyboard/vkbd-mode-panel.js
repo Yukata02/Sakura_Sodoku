@@ -3,7 +3,7 @@ import VkbdButtonIcon from './vkbd-button-icons';
 
 function ModePanelButtonBackground({x, y, width, height}) {
     return (
-        <rect className="button-bg" x={x} y={y} width={width} height={height} rx="15" />
+        <rect className="button-bg" x={x} y={y} width={width} height={height} rx="24" />
     );
 }
 
@@ -47,7 +47,7 @@ export default function VkbdModePanel({modeButtons, inputMode, simplePencilMarki
     });
     return (
         <g className={`vkbd-mode-panel input-mode-${inputMode}`}>
-            <rect className="background" x="40" y="40" width="920" height="180" rx="20" />
+            <rect className="background" x="40" y="40" width="920" height="180" rx="36" />
             <text
                 className="mode-label"
                 x="175"
@@ -60,7 +60,7 @@ export default function VkbdModePanel({modeButtons, inputMode, simplePencilMarki
             </text>
             {buttonBackgrounds}
             <rect className="active-mode-bg"
-                x={activeModeX} y="55" width="150" height="150" rx="15"
+                x={activeModeX} y="55" width="150" height="150" rx="28"
             />
             {buttonForegrounds}
         </g>

@@ -4,6 +4,7 @@ import { SudokuHinter } from './sudoku-hinter';
 import { cellSet, cellProp } from './sudoku-cell-sets';
 import SudokuExplainer from './sudoku-explainer';
 import { expandPuzzleDigits, compressPuzzleDigits } from './string-utils';
+import { generateLocalHint } from './nova-hint-engine';
 
 import {
     MODAL_TYPE_WELCOME,
@@ -982,18 +983,9 @@ export const modelHelpers = {
         }
         grid = grid.set('modalState', undefined);
 
-        // Make sure we have hints available
-        const explainer = grid.get('explainer');
-        if (!explainer) {
-            return grid.set('modalState', {
-                modalType: MODAL_TYPE_HINT,
-                fetchRequired: true,
-                loading: true,
-                retries: 10,
-            });
-        }
-        const hint = modelHelpers.findNextHint(grid);
-        if (hint) {
+        // Generate intelligent hint locally (runs offline & instantly)
+        const hint = generateLocalHint(grid);
+        if (hint && !hint.noHint) {
             grid = grid.set('modalState', {
                 modalType: MODAL_TYPE_HINT,
                 escapeAction: 'close',
@@ -1006,6 +998,7 @@ export const modelHelpers = {
                 modalType: MODAL_TYPE_HINT,
                 escapeAction: 'close',
                 noHint: true,
+                errorMessage: (hint && hint.html) || undefined,
             });
         }
         return grid;

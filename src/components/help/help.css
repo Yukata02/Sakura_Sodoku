@@ -6,6 +6,9 @@
     bottom: 0;
     right: 0;
     background-color: var(--background-color);
+    background-image:
+        radial-gradient(1100px 520px at 8% -8%, var(--background-glow-1) 0%, transparent 55%),
+        radial-gradient(900px 480px at 100% 0%, var(--background-glow-2) 0%, transparent 48%);
     padding: 2em;
     overflow-y: auto;
 }
@@ -15,13 +18,13 @@
     right: 1em;
     top: 1em;
     font-size: 1.8em;
-    font-weight: bold;
+    font-weight: 600;
     border: none;
     width: 1.3em;
     height: 1.3em;
     color: var(--status-bar-button-text-color);
     background-color: var(--status-bar-button-hover-color);
-    border-radius: 0.1em;
+    border-radius: 0.4em;
 }
 
 .help-page .close-button:hover {
@@ -31,12 +34,17 @@
 .help-page .content {
     max-width: 800px;
     margin: 0 auto;
-    line-height: 1.4;
-    padding-bottom: 5em;
+    line-height: 1.55;
+    padding: 1.4em 1.6em 5em;
+    background: var(--modal-bg-color);
+    border-radius: var(--radius-lg);
+    box-shadow: var(--shadow-card);
 }
 
 .help-page h1 {
     font-size: 2rem;
+    font-weight: 700;
+    margin-top: 0;
 }
 
 .help-page ul {
